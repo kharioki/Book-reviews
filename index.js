@@ -1,8 +1,23 @@
 require('dotenv').config({ path: './.env' });
 
 const { GraphQLServer } = require('graphql-yoga');
+const mongoose = require('mongoose');
 
 const port = process.env.PORT || 7777;
+
+// connect to mongoDB
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+const Schema = mongoose.Schema;
+const reviewSchema = new Schema({
+  text: String,
+  rating: Number,
+});
+
+const Review = mongoose.model('Review', reviewSchema);
 
 const typeDefs = `
   type Review {
@@ -51,4 +66,4 @@ const server = new GraphQLServer({
   resolvers,
 });
 
-server.start({ port }, () => console.log('Server is running on localhost:4000'));
+server.start({ port }, () => console.log('Server is running on localhost:7777'));
