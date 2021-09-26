@@ -74,3 +74,29 @@ function createReview() {
   document.getElementById("myRating").value = "";
   document.getElementById("myReview").value = "";
 }
+
+// get reviews from backend
+async function getReviews() {
+  const data = JSON.stringify({
+    query: `{
+      reviews {
+        id
+        text
+        rating
+      }
+    }`,
+  });
+
+  const response = await fetch('http://localhost:7777/', {
+    method: 'POST',
+    body: data,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  const json = await response.json();
+  console.log(json.data);
+}
+
+getReviews();
