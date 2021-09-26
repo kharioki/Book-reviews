@@ -1,0 +1,214 @@
+:root {
+  --star-size: 20px;
+  --star-color: #ccc;
+  --star-background: #fc0;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* text-align: center; */
+  background: gainsboro;
+}
+
+.card {
+  width: 400px;
+  height: 500px;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  margin: 0 20px;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  /* width: 70%; */
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.summary {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.average-rating {
+  /* width: 50%; */
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.average {
+  font-size: 24px;
+  font-weight: semi-bold;
+  margin-right: 10px;
+  /* margin-bottom: 20px; */
+}
+
+.stars {
+  --percent: calc(var(--rating) / 5 * 100%);
+  display: inline-block;
+  font-size: var(--star-size);
+  font-family: Times; /* make sure ★ appears correctly */
+  line-height: 1;
+}
+
+.stars::before {
+  content: '★★★★★';
+  letter-spacing: 3px;
+  background: linear-gradient(90deg, var(--star-background) var(--percent), var(--star-color) var(--percent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.addBtn {
+  padding: 2px 6px;
+  background: white;
+  border: 1px solid #ccc;
+  color: #555;
+  font-size: 12px;
+  cursor: pointer;
+  width: 35%;
+  height: 40px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.reviews {
+  width: 100%;
+  display: block;
+  /* flex-direction: column;
+  align-items: flex-start; */
+}
+
+.subtitle {
+  font-size: 16px;
+  font-weight: semi-bold;
+  margin-left: 10px;
+}
+
+hr {
+  width: 100%;
+  height: 1px;
+  border-width:0;
+  color:gray;
+  background-color:gray;
+}
+
+ul {
+  list-style: none;
+  padding: 10px;
+  align-items: flex-start;
+}
+
+li {
+  margin-bottom: 10px;
+  font-size: 12px;
+  color: gray;
+}
+
+.num {
+  font-size: 12px;
+  font-weight: bold;
+  color: #000;
+}
+
+.rating-overlay {
+  width: 400px;
+  height: 300px;
+  padding: 20px 30px;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  margin: 0 20px;
+  border-radius: 10px;
+}
+
+.rating {
+  --dir: right;
+  --fill: #fc0;
+  --fillbg: rgba(100, 100, 100, 0.15);
+  --star: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.25l-6.188 3.75 1.641-7.031-5.438-4.734 7.172-0.609 2.813-6.609 2.813 6.609 7.172 0.609-5.438 4.734 1.641 7.031z"/></svg>');
+  
+  --stars: 5;
+  --starsize: 2rem;
+  --symbol: var(--star);
+  --value: 1;
+  --w: calc(var(--stars) * var(--starsize));
+  --x: calc(100% * (var(--value) / var(--stars)));
+  block-size: var(--starsize);
+  inline-size: var(--w);
+  position: relative;
+  touch-action: manipulation;
+  -webkit-appearance: none;
+  /* margin-top: 1.5rem; */
+}
+
+[dir="rtl"] .rating {
+  --dir: left;
+}
+
+.rating::-moz-range-track {
+  background: linear-gradient(to var(--dir), var(--fill) 0 var(--x), var(--fillbg) 0 var(--x));
+  block-size: 100%;
+  mask: repeat left center/var(--starsize) var(--symbol);
+}
+
+.rating::-webkit-slider-runnable-track {
+  background: linear-gradient(to var(--dir), var(--fill) 0 var(--x), var(--fillbg) 0 var(--x));
+  block-size: 100%;
+  mask: repeat left center/var(--starsize) var(--symbol);
+  -webkit-mask: repeat left center/var(--starsize) var(--symbol);
+}
+
+.rating::-moz-range-thumb {
+  height: var(--starsize);
+  opacity: 0;
+  width: var(--starsize);
+}
+.rating::-webkit-slider-thumb {
+  height: var(--starsize);
+  opacity: 0;
+  width: var(--starsize);
+  -webkit-appearance: none;
+}
+
+.rating, .rating-label {
+  display: block;
+}
+.rating-label {
+  margin-block-end: 1rem;
+}
+
+.review-label {
+  display: contents;
+  margin-block-end: 1rem;
+}
+
+.review-input {
+  margin: 10px 10px;
+  border: none;
+  border-color: transparent;
+}
+
+.submit-btn {
+  margin-top: 10px;
+}
