@@ -3,17 +3,17 @@ var data = [
   {
     "id": 1,
     "text": "book was full of fluff",
-    "value": 4
+    "rating": 4
   },
   {
     "id": 2,
     "text": "book was fluff",
-    "value": 3
+    "rating": 3
   },
   {
     "id": 3,
     "text": "book was amazing",
-    "value": 4
+    "rating": 4
   },
 ];
 
@@ -25,10 +25,10 @@ function listReviews() {
     var t = document.createTextNode(`, ${item.text}`);
     var starSpan = document.createElement("SPAN");
     var ratingSpan = document.createElement("SPAN");
-    var ratingText = document.createTextNode(item.value);
+    var ratingText = document.createTextNode(item.rating);
     starSpan.className = "stars";
     ratingSpan.className = "num";
-    starSpan.style = `--rating: ${item.value};`;
+    starSpan.style = `--rating: ${item.rating};`;
     ratingSpan.appendChild(ratingText);
     li.appendChild(starSpan);
     li.appendChild(ratingSpan);
@@ -39,7 +39,7 @@ function listReviews() {
 
 // calculate average book rating
 function calculateAverage() {
-  var total = data.reduce((acc, item) => acc + item.value, 0);
+  var total = data.reduce((acc, item) => acc + item.rating, 0);
   var average = total / data.length;
 
   return average.toFixed(1);
@@ -67,7 +67,7 @@ function createReview() {
   var newReview = {
     id: data.length + 1,
     text: review,
-    value: Number(rating),
+    rating: Number(rating),
   };
   data = [...data, newReview];
   listReviews();
