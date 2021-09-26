@@ -80,7 +80,7 @@ body {
 }
 
 .addBtn {
-  padding: 2px 6px;
+  /* padding: 2px 6px; */
   background: white;
   border: 1px solid #ccc;
   color: #555;
@@ -88,7 +88,9 @@ body {
   cursor: pointer;
   width: 35%;
   height: 40px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  box-sizing: border-box;
 }
 
 .reviews {
@@ -149,9 +151,9 @@ li {
   --star: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.25l-6.188 3.75 1.641-7.031-5.438-4.734 7.172-0.609 2.813-6.609 2.813 6.609 7.172 0.609-5.438 4.734 1.641 7.031z"/></svg>');
   
   --stars: 5;
-  --starsize: 2rem;
+  --starsize: 30px;
   --symbol: var(--star);
-  --value: 1;
+  --value: 4;
   --w: calc(var(--stars) * var(--starsize));
   --x: calc(100% * (var(--value) / var(--stars)));
   block-size: var(--starsize);
