@@ -37,18 +37,7 @@ const typeDefs = `
 
 const resolvers = {
   Query: {
-    reviews: () => [
-      {
-        id: '1',
-        text: 'This is a review',
-        rating: 5
-      },
-      {
-        id: '2',
-        text: 'This is another review',
-        rating: 4
-      }
-    ],
+    reviews: () => Review.find(),
   },
   Mutation: {
     createReview: (parent, args) => {
