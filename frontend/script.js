@@ -1,30 +1,12 @@
 // vars
 const DB_URL = 'http://localhost:7777/';
-// sample data
-// var data = [
-//   {
-//     "id": 1,
-//     "text": "book was full of fluff",
-//     "rating": 4
-//   },
-//   {
-//     "id": 2,
-//     "text": "book was fluff",
-//     "rating": 3
-//   },
-//   {
-//     "id": 3,
-//     "text": "book was amazing",
-//     "rating": 4
-//   },
-// ];
+
 var data = [];
 var mean = 1;
 
 // Create a list of reviews when the page loads
 function listReviews() {
   data.forEach(function (item) {
-    console.log({ item });
     var li = document.createElement("li");
     var t = document.createTextNode(`, ${item.text}`);
     var starSpan = document.createElement("SPAN");
@@ -46,8 +28,6 @@ function calculateAverage() {
   var total = data.reduce((acc, item) => acc + item.rating, 0);
   var average = total / data.length;
   mean = data.length ? average.toFixed(1) : mean;
-  console.log(mean);
-
 
   var averageRating = document.createElement("p");
   averageRating.className = "average";
@@ -70,13 +50,6 @@ function createReview() {
   var rating = document.getElementById("myRating").value;
   var text = document.getElementById("myReview").value;
   addReview(text, rating);
-  // var newReview = {
-  //   id: data.length + 1,
-  //   text: review,
-  //   rating: Number(rating),
-  // };
-  // data = [...data, newReview];
-  // listReviews();
   document.getElementById("myRating").value = "";
   document.getElementById("myReview").value = "";
 }
@@ -102,7 +75,6 @@ async function getReviews() {
   });
 
   const json = await response.json();
-  console.log(json.data);
   data = json.data.reviews;
   listReviews();
   calculateAverage();
@@ -129,7 +101,6 @@ async function addReview(text, rating) {
   });
 
   const json = await response.json();
-  console.log(json.data);
   res = json.data.createReview;
   data = [...data, res];
   // append new review to page
@@ -153,4 +124,11 @@ async function addReview(text, rating) {
   calculateAverage();
 }
 
-// getReviews();
+// focus rating overlay on click
+function focusRating() {
+  var element = document.getElementById("rate");
+  element.scrollIntoView({
+    behavior: "smooth",
+    block: "center"
+  });
+}
