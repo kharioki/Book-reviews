@@ -14,7 +14,8 @@
   "keywords": [
     "graphql",
     "mongoose",
-    "express"
+    "express",
+    "heroku"
   ],
   "author": "kharioki",
   "license": "ISC",
@@ -29,5 +30,8 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.13"
+  },
+  "engines": {
+    "node": "14.x"
   }
 }
