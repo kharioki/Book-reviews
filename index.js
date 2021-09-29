@@ -3,8 +3,6 @@ require('dotenv').config({ path: './.env' });
 const { GraphQLServer } = require('graphql-yoga');
 const mongoose = require('mongoose');
 
-const port = process.env.PORT || 7777;
-
 // connect to mongoDB
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
@@ -55,7 +53,4 @@ const server = new GraphQLServer({
   resolvers,
 });
 
-// server.start({ port }, () => console.log('Server is running on localhost:7777'));
-server.listen({ port: process.env.PORT || 7777 }).then(({ url }) => {
-  console.log(`Server is running on ${url}`);
-});
+server.start({ port: process.env.PORT || 7777 }, () => console.log('Server is running on localhost:7777'));
