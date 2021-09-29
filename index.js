@@ -55,4 +55,7 @@ const server = new GraphQLServer({
   resolvers,
 });
 
-server.start({ port }, () => console.log('Server is running on localhost:7777'));
+// server.start({ port }, () => console.log('Server is running on localhost:7777'));
+server.listen({ port: process.env.PORT || 7777 }).then(({ url }) => {
+  console.log(`Server is running on ${url}`);
+});
