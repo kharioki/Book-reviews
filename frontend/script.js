@@ -1,5 +1,6 @@
 // vars
-const DB_URL = 'http://localhost:7777/';
+// const DB_URL = 'http://localhost:7777/';
+const DB_URL = 'https://kiki-book-reviews.herokuapp.com/';
 
 var data = [];
 var mean = 1;
