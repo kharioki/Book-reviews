@@ -74,7 +74,6 @@ export const Divider = styled.div`
   width: 100%;
   height: 1px;
   background-color: var(--light-gray);
-  /* margin: 20px 0; */
 `;
 
 export const List = styled.div`
@@ -86,7 +85,6 @@ export const List = styled.div`
 export const Subtitle = styled.p`
   font-size: 16px;
   font-weight: semi-bold;
-  margin-left: 10px;
 `;
 
 export const ListItem = styled.li`
