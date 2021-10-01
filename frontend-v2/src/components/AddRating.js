@@ -46,6 +46,7 @@ const AddRating = forwardRef((props, ref) => {
           fullSymbol={<img src="assets/star-gold.png" alt="filled star" className="stars" />}
           placeholderSymbol={<img src="assets/star-gold.png" alt="filled placeholder star" className="stars" />}
           placeholderRating={rating}
+          fractions={2}
           onChange={(newRating) => setRating(newRating)}
         />
       </label>
