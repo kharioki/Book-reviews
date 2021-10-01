@@ -1,7 +1,9 @@
 require('dotenv').config({ path: './.env' });
 
-const { GraphQLServer } = require('graphql-yoga');
+const { GraphQLServer, PubSub } = require('graphql-yoga');
 const mongoose = require('mongoose');
+
+const port = process.env.PORT || 7777;
 
 // connect to mongoDB
 mongoose.connect(process.env.MONGO_URI, {
@@ -19,17 +21,18 @@ const Review = mongoose.model('Review', reviewSchema);
 
 const typeDefs = `
   type Review {
-    id: ID
+    id: ID!
     text: String!
-    rating: Int!
+    rating: Float!
   }
-
   type Query {
-    reviews: [Review!]!
+    reviews: [Review]
   }
-
   type Mutation {
-    createReview(text: String!, rating: Int!): Review!
+    createReview(text: String!, rating: Float!): Review!
+  }
+  type Subscription {
+    newReview: Review
   }
 `;
 
@@ -38,19 +41,30 @@ const resolvers = {
     reviews: () => Review.find(),
   },
   Mutation: {
-    createReview: (parent, args) => {
-      const review = new Review({
-        text: args.text,
-        rating: args.rating,
-      });
-      return review.save();
+    createReview: async (_, { text, rating }) => {
+      const review = new Review({ text, rating });
+      await review.save();
+      pubsub.publish('newReview', { newReview: review });
+      return review;
+    }
+  },
+  Subscription: {
+    newReview: {
+      subscribe: (_, { }, { pubsub }) => {
+        return pubsub.asyncIterator('newReview');
+      },
     }
   },
 };
 
+const pubsub = new PubSub();
+
 const server = new GraphQLServer({
   typeDefs,
   resolvers,
+  context: {
+    pubsub,
+  },
 });
 
-server.start({ port: process.env.PORT || 7777 }, () => console.log('Server is running on localhost:7777'));
+server.start({ port }, () => console.log('Server is running on localhost:7777'));
