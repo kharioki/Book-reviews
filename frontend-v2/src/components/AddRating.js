@@ -1,40 +1,37 @@
 import { useState } from 'react';
 import Rating from 'react-rating';
+import { useMutation, gql } from '@apollo/client';
 
 import { AddRatingStyles, ReviewInput } from './styles/AddRatingStyles';
 import { Title, Subtitle } from './styles/ProductStyles';
 import Button from './styles/Button';
-import { DB_URL } from '../Utils';
+
+const ADD_REVIEW = gql`
+  mutation createReview($rating: Float!, $text: String!) {
+    createReview(rating: $rating, text: $text) {
+      id
+      text
+      rating
+    }
+  }
+`;
 
 function AddRating() {
   const [rating, setRating] = useState(3);
   const [reviewText, setReviewText] = useState('');
 
-  const addReview = async () => {
-    const query = JSON.stringify({
-      query: `mutation {
-        createReview(text: "${reviewText}", rating: ${rating}) {
-          id
-          text
-          rating
-        }
-      }`,
-    });
+  const [createReview] = useMutation(ADD_REVIEW);
 
-    const response = await fetch(DB_URL, {
-      method: 'POST',
-      body: query,
-      headers: {
-        'Content-Type': 'application/json',
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await createReview({
+      variables: {
+        rating,
+        text: reviewText,
       },
     });
-
-    await response.json();
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    addReview();
+    setRating(3);
+    setReviewText('');
   };
 
   return (
@@ -60,6 +57,7 @@ function AddRating() {
           type="text"
           placeholder="Start typing..."
           onChange={(e) => setReviewText(e.target.value)}
+          value={reviewText}
         />
       </label>
 

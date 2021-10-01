@@ -1,7 +1,10 @@
 import styled, { createGlobalStyle } from 'styled-components';
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { WebSocketLink } from '@apollo/client/link/ws';
 
 import ProductView from './components/ProductView';
 import AddRating from './components/AddRating';
+import { DB_URL, WS_URL } from './Utils';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -32,15 +35,28 @@ const Container = styled.div`
   }
 `;
 
+const link = new WebSocketLink({
+  uri: WS_URL,
+  options: {
+    reconnect: true,
+  },
+});
+
+const client = new ApolloClient({
+  link,
+  uri: DB_URL,
+  cache: new InMemoryCache(),
+});
+
 function App() {
   return (
-    <div>
+    <ApolloProvider client={client}>
       <GlobalStyle />
       <Container>
         <ProductView />
         <AddRating />
       </Container>
-    </div>
+    </ApolloProvider>
   );
 }
 

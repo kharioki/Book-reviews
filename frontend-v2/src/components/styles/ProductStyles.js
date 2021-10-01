@@ -14,6 +14,7 @@ export const ProductStyles = styled.div`
     display: flex;
     flex-direction: column;
     margin: 0 auto;
+    height: 100%;
 
     @media screen and (max-width: 600px) {
       width: 90%;
@@ -78,7 +79,7 @@ export const Divider = styled.div`
 
 export const List = styled.div`
   overflow: scroll;
-  height: 60%;
+  height: 90%;
 
   ul {
     list-style: none;
