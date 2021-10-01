@@ -62,7 +62,7 @@ function ProductView() {
   const [rating, setRating] = useState(1);
   const [reviews, setReviews] = useState([]);
 
-  const { loading, error, data } = useQuery(GET_PRODUCT_REVIEWS);
+  const { data } = useQuery(GET_PRODUCT_REVIEWS);
 
   useSubscription(GET_NEW_REVIEW, {
     onSubscriptionData: ({ subscriptionData }) => {
@@ -78,19 +78,7 @@ function ProductView() {
       setRating(calculateAverageRating(data.reviews));
     }
 
-    if (error) {
-      console.log(error);
-    }
-
-    if (loading) {
-      console.log('loading');
-    }
-
-    return () => {
-      console.log('unsubscribe');
-    };
-
-  }, [data, error, loading]);
+  }, [data]);
 
 
   return (
