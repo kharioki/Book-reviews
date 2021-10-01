@@ -1,3 +1,4 @@
+import React, { useRef } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { WebSocketLink } from '@apollo/client/link/ws';
@@ -49,12 +50,16 @@ const client = new ApolloClient({
 });
 
 function App() {
+  const ref = useRef();
+  const handleFocus = () => {
+    ref.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  };
   return (
     <ApolloProvider client={client}>
       <GlobalStyle />
       <Container>
-        <ProductView />
-        <AddRating />
+        <ProductView onClick={() => handleFocus()} />
+        <AddRating ref={ref} />
       </Container>
     </ApolloProvider>
   );

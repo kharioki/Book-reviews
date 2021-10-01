@@ -58,7 +58,7 @@ const GET_NEW_REVIEW = gql`
 `;
 
 
-function ProductView() {
+function ProductView({ onClick }) {
   const [rating, setRating] = useState(1);
   const [reviews, setReviews] = useState([]);
 
@@ -89,7 +89,7 @@ function ProductView() {
           <div className="average-rating">
             <AverageRating rating={rating} />
           </div>
-          <Button>Add Review</Button>
+          <Button onClick={onClick}>Add Review</Button>
         </Summary>
 
         <Divider />

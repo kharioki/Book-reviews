@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, forwardRef } from 'react';
 import Rating from 'react-rating';
 import { useMutation, gql } from '@apollo/client';
 
@@ -16,7 +16,7 @@ const ADD_REVIEW = gql`
   }
 `;
 
-function AddRating() {
+const AddRating = forwardRef((props, ref) => {
   const [rating, setRating] = useState(3);
   const [reviewText, setReviewText] = useState('');
 
@@ -61,9 +61,9 @@ function AddRating() {
         />
       </label>
 
-      <Button onClick={handleSubmit} submit>Submit Review</Button>
+      <Button ref={ref} onClick={handleSubmit} submit>Submit Review</Button>
     </AddRatingStyles>
   );
-}
+});
 
 export default AddRating;
