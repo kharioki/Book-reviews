@@ -1,6 +1,7 @@
 import styled, { createGlobalStyle } from 'styled-components';
 
 import ProductView from './components/ProductView';
+import AddRating from './components/AddRating';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -13,10 +14,6 @@ const GlobalStyle = createGlobalStyle`
     --light-gray: #ccc;
     --dark-gray: #555;
     box-sizing: border-box;
-  }
-
-  *, *:before, *:after {
-    /* box-sizing: inherit; */
   }
 `;
 
@@ -36,6 +33,7 @@ function App() {
       <GlobalStyle />
       <Container>
         <ProductView />
+        <AddRating />
       </Container>
     </div>
   );

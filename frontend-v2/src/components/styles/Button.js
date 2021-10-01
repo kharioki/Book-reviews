@@ -9,6 +9,7 @@ const Button = styled.button`
   height: 40px;
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
+  width: 35%;
   ${props => props.submit && `
     margin-top: 10px;
   `}
