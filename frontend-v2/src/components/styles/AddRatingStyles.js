@@ -23,6 +23,11 @@ export const AddRatingStyles = styled.div`
     display: contents;
     margin-block-end: 1rem;
   }
+
+  @media screen and (max-width: 600px) {
+    width: 100%;
+    margin: 0 10px;
+  }
 `;
 
 export const ReviewInput = styled.input`

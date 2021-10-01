@@ -13,6 +13,12 @@ const Button = styled.button`
   ${props => props.submit && `
     margin-top: 10px;
   `}
+
+  @media screen and (max-width: 600px) {
+    ${props => props.submit && `
+      width: 50%;
+    `} 
+  }
 `;
 
 export default Button;

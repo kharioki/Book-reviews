@@ -7,18 +7,27 @@ export const ProductStyles = styled.div`
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
-  margin: 0 20px;
+  margin: 20px 20px;
   padding: 20px;
 
   .content {
     display: flex;
     flex-direction: column;
     margin: 0 auto;
+
+    @media screen and (max-width: 600px) {
+      width: 90%;
+    }
   }
 
   .reviews {
-    /* width: 100%; */
     display: block;
+    height: 60%;
+  }
+
+  @media (max-width: 600px) {
+    padding: 10px;
+    margin: 20px 10px;
   }
 `;
 
@@ -75,7 +84,9 @@ export const List = styled.div`
     list-style: none;
     padding: 10px;
     align-items: flex-start;
-    display: contents;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
   }
 `;
 
@@ -91,6 +102,10 @@ export const ListItem = styled.li`
   
   .stars {
     height: 24px;
+
+    @media screen and (max-width: 600px) {
+      height: 20px;
+    }
   }
 
   .num {

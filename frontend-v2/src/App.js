@@ -25,6 +25,11 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   background: var(--background);
+  padding-bottom: 20px;
+
+  @media screen and (max-width: 600px) {
+    height: 100%;
+  }
 `;
 
 function App() {

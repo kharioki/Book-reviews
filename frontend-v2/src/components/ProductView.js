@@ -3,6 +3,7 @@ import Rating from 'react-rating';
 
 import { ProductStyles, Title, Summary, AverageRatingStyles, Divider, List, Subtitle, ListItem } from './styles/ProductStyles';
 import Button from './styles/Button';
+import { DB_URL } from '../Utils';
 
 const AverageRating = ({ rating }) => {
   return (
@@ -34,8 +35,6 @@ const Review = ({ review }) => {
     </ListItem>
   )
 }
-
-const DB_URL = 'https://kiki-book-reviews.herokuapp.com/';
 
 function ProductView() {
   const [rating, setRating] = useState(1);
