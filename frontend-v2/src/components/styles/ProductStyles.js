@@ -80,15 +80,7 @@ export const Divider = styled.div`
 export const List = styled.div`
   overflow: scroll;
   height: 90%;
-
-  ul {
-    list-style: none;
-    padding: 10px;
-    align-items: flex-start;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-  }
+  width: 300px;
 `;
 
 export const Subtitle = styled.p`
@@ -100,6 +92,7 @@ export const Subtitle = styled.p`
 export const ListItem = styled.li`
   display: flex;
   align-items: center;
+  width: max-content;
   
   .stars {
     height: 24px;

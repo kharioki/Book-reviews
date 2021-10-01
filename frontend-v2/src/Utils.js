@@ -1,4 +1,6 @@
-// export const DB_URL = 'https://kiki-book-reviews.herokuapp.com/';
+export const API_URL = 'https://kiki-book-reviews.herokuapp.com/';
+export const WSS_URL = 'wss://kiki-book-reviews.herokuapp.com/';
+
 export const DB_URL = 'http://localhost:7777/';
 export const WS_URL = 'ws://localhost:7777/';
 

@@ -4,7 +4,7 @@ import { WebSocketLink } from '@apollo/client/link/ws';
 
 import ProductView from './components/ProductView';
 import AddRating from './components/AddRating';
-import { DB_URL, WS_URL } from './Utils';
+import { API_URL, WSS_URL } from './Utils';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -36,7 +36,7 @@ const Container = styled.div`
 `;
 
 const link = new WebSocketLink({
-  uri: WS_URL,
+  uri: WSS_URL,
   options: {
     reconnect: true,
   },
@@ -44,7 +44,7 @@ const link = new WebSocketLink({
 
 const client = new ApolloClient({
   link,
-  uri: DB_URL,
+  uri: API_URL,
   cache: new InMemoryCache(),
 });
 
